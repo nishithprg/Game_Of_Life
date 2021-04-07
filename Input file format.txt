@@ -1,0 +1,276 @@
+### 2 different input file formats : 
+# - 1-D cellular automata
+# - 2-D cellular automata
+# First line of file should contain either 1D or 2D
+
+## Format for 1-D cellular automata
+- 1D
+- Initial tape as per the specification in question 1
+- Number of evolutions
+- List of rule : One rule per line
+  format : 0 a a , AI <=> 0,a,a -> AI
+  Copy the following rules for testing Question 1
+0 a a  , AI
+0 a b  , AI
+0 a 0  , N
+AI a a  , AP
+AI a b  , AP
+AI a BI , AP
+AI a BP , AP
+AP a a  , AI
+AP a b  , AI
+AP a BI , AI
+AP a BP , A
+b b 0  , BI
+a b 0  , BI
+0 b 0  , N
+b b BI , BP
+a b BI , BP
+AP b BI , BP
+AI b BI , BP
+b b BP , BI
+a b BP , BI
+AP b BP , BI
+AI b BP , BI
+AI AP BP , Y
+AP AI BI , Y
+AP BP BI , Y
+AI BI BP , Y
+AI AP BP , Y
+0 AI BI , Y
+AP BP BI , Y
+AI BI 0 , Y
+0 AI Y , Y
+AI AP Y , Y
+AP AI Y , Y
+Y BI BP , Y
+Y BP BI , Y
+Y BI 0 , Y
+0 AI N , N
+0 a N , N
+0 b  N , N
+a b N , N
+a a N , N
+a BI N , N
+a BP N , N
+b b N , N
+b a N , N
+b BI N , N
+b BP N , N
+AI AP N , N
+AI a N , N
+AI b N , N
+AP BI N , N
+AP BP N , N
+AP AI N , N
+AP a N , N
+AP b N , N
+N a b , N
+N a a , N
+N a BI , N
+N a BP , N
+N b b , N
+N b a , N
+N b BI , N
+N b BP , N
+N a 0 , N
+N BI 0 , N
+N BI BP , N
+N BP BI , N
+AI a BI , N
+AI a BP , N
+AI b BI , N
+AI b a , N
+AI b b , N
+AI AP BI , N
+AP a BI , N
+AP a BP , N
+AP b BP , N
+AP b a , N
+AP b b , N
+AP AI BP , N
+0 AI BP , N
+0 b a , N
+0 b b ,N
+0 b 0 ,N
+b a a , N
+Y Y Y , Y
+N b N , N
+b a b , N
+b a BI , N
+b a BP , N
+N N N , N
+N a N , N
+b a 0 , N
+a a 0 , N
+0 a 0 , N
+0 Y Y , Y
+0 N N , N
+Y Y 0 , Y
+N N 0 , N
+
+
+
+## Format for 2-D cellular automata
+- 2D
+- num_rows num_column
+  Same number of rows and columns (rows = columns)
+- Initial grid rows * columns
+- Number of evolutions
+- List of rules 
+  Transition Cells format: a b c -> a b c d X e f g h ( 3x3 -> 9 )
+                           d X e
+                           f g h
+  X -> Cell that evolves
+  Rules format : a b c d X e f g h , Y <=> a,b,c,d,X,e,f,g,h -> Y
+
+  Game of life :
+  Rules format for testing game of life (to limit number of transition rules)
+    -> Two section of rule separated by Z
+    -> First section rules for livings cells to stay alive in next generation
+    -> Second section rules for dead cells to become alive in next generation
+	!!!!! Warning : Z differentiates a 2D-automata test input file to that of Game of life (Jeu de Vie)
+  Copy follow rules to test game of life
+
+1 1 1 0 1 0 0 0 0 , 1 
+1 1 0 1 1 0 0 0 0 , 1
+1 1 0 0 1 1 0 0 0 , 1
+1 1 0 0 1 0 1 0 0 , 1
+1 1 0 0 1 0 0 1 0 , 1
+1 1 0 0 1 0 0 0 1 , 1
+1 0 1 1 1 0 0 0 0 , 1
+1 0 1 0 1 1 0 0 0 , 1
+1 0 1 0 1 0 1 0 0 , 1
+1 0 1 0 1 0 0 1 0 , 1
+1 0 1 0 1 0 0 0 1 , 1
+1 0 0 1 1 1 0 0 0 , 1
+1 0 0 1 1 0 1 0 0 , 1
+1 0 0 1 1 0 0 1 0 , 1
+1 0 0 1 1 0 0 0 1 , 1
+1 0 0 0 1 1 1 0 0 , 1
+1 0 0 0 1 1 0 1 0 , 1
+1 0 0 0 1 1 0 0 1 , 1
+1 0 0 0 1 0 1 1 0 , 1
+1 0 0 0 1 0 1 0 1 , 1
+1 0 0 0 1 0 0 1 1 , 1
+0 1 1 1 1 0 0 0 0 , 1
+0 1 1 0 1 1 0 0 0 , 1
+0 1 1 0 1 0 1 0 0 , 1
+0 1 1 0 1 0 0 1 0 , 1
+0 1 1 0 1 0 0 0 1 , 1
+0 1 0 1 1 1 0 0 0 , 1
+0 1 0 1 1 0 1 0 0 , 1
+0 1 0 1 1 0 0 1 0 , 1
+0 1 0 1 1 0 0 0 1 , 1
+0 1 0 0 1 1 1 0 0 , 1
+0 1 0 0 1 1 0 1 0 , 1
+0 1 0 0 1 1 0 0 1 , 1
+0 1 0 0 1 0 1 1 0 , 1
+0 1 0 0 1 0 1 0 1 , 1
+0 1 0 0 1 0 0 1 1 , 1
+0 0 1 1 1 1 0 0 0 , 1
+0 0 1 1 1 0 1 0 0 , 1
+0 0 1 1 1 0 0 1 0 , 1
+0 0 1 1 1 0 0 0 1 , 1
+0 0 1 0 1 1 1 0 0 , 1
+0 0 1 0 1 1 0 1 0 , 1
+0 0 1 0 1 1 0 0 1 , 1
+0 0 1 0 1 0 1 1 0 , 1
+0 0 1 0 1 0 1 0 1 , 1
+0 0 1 0 1 0 0 1 1 , 1
+0 0 0 1 1 1 1 0 0 , 1
+0 0 0 1 1 1 0 1 0 , 1
+0 0 0 1 1 1 0 0 1 , 1
+0 0 0 1 1 0 1 1 0 , 1
+0 0 0 1 1 0 1 0 1 , 1
+0 0 0 1 1 0 0 1 1 , 1
+0 0 0 0 1 1 1 1 0 , 1
+0 0 0 0 1 1 1 0 1 , 1
+0 0 0 0 1 1 0 1 1 , 1
+0 0 0 0 1 0 1 1 1 , 1
+1 1 0 0 1 0 0 0 0 , 1
+1 0 1 0 1 0 0 0 0 , 1
+1 0 0 1 1 0 0 0 0 , 1
+1 0 0 0 1 1 0 0 0 , 1
+1 0 0 0 1 0 1 0 0 , 1
+1 0 0 0 1 0 0 1 0 , 1
+1 0 0 0 1 0 0 0 1 , 1
+0 1 1 0 1 0 0 0 0 , 1
+0 1 0 1 1 0 0 0 0 , 1
+0 1 0 0 1 1 0 0 0 , 1
+0 1 0 0 1 0 1 0 0 , 1
+0 1 0 0 1 0 0 1 0 , 1
+0 1 0 0 1 0 0 0 1 , 1
+0 0 1 1 1 0 0 0 0 , 1
+0 0 1 0 1 1 0 0 0 , 1
+0 0 1 0 1 0 1 0 0 , 1
+0 0 1 0 1 0 0 1 0 , 1
+0 0 1 0 1 0 0 0 1 , 1
+0 0 0 1 1 1 0 0 0 , 1
+0 0 0 1 1 0 1 0 0 , 1
+0 0 0 1 1 0 0 1 0 , 1
+0 0 0 1 1 0 0 0 1 , 1
+0 0 0 0 1 1 1 0 0 , 1
+0 0 0 0 1 1 0 1 0 , 1
+0 0 0 0 1 1 0 0 1 , 1
+0 0 0 0 1 0 1 1 0 , 1
+0 0 0 0 1 0 1 0 1 , 1
+0 0 0 0 1 1 0 1 0 , 1
+0 0 0 0 1 0 0 1 1 , 1
+Z
+1 1 1 0 0 0 0 0 0 , 1
+1 1 0 1 0 0 0 0 0 , 1
+1 1 0 0 0 1 0 0 0 , 1
+1 1 0 0 0 0 1 0 0 , 1
+1 1 0 0 0 0 0 1 0 , 1
+1 1 0 0 0 0 0 0 1 , 1
+1 0 1 1 0 0 0 0 0 , 1
+1 0 1 0 0 1 0 0 0 , 1
+1 0 1 0 0 0 1 0 0 , 1
+1 0 1 0 0 0 0 1 0 , 1
+1 0 1 0 0 0 0 0 1 , 1
+1 0 0 1 0 1 0 0 0 , 1
+1 0 0 1 0 0 1 0 0 , 1
+1 0 0 1 0 0 0 1 0 , 1
+1 0 0 1 0 0 0 0 1 , 1
+1 0 0 0 0 1 1 0 0 , 1
+1 0 0 0 0 1 0 1 0 , 1
+1 0 0 0 0 1 0 0 1 , 1
+1 0 0 0 0 0 1 1 0 , 1
+1 0 0 0 0 0 1 0 1 , 1
+1 0 0 0 0 0 0 1 1 , 1
+0 1 1 1 0 0 0 0 0 , 1
+0 1 1 0 0 1 0 0 0 , 1
+0 1 1 0 0 0 1 0 0 , 1
+0 1 1 0 0 0 0 1 0 , 1
+0 1 1 0 0 0 0 0 1 , 1
+0 1 0 1 0 1 0 0 0 , 1
+0 1 0 1 0 0 1 0 0 , 1
+0 1 0 1 0 0 0 1 0 , 1
+0 1 0 1 0 0 0 0 1 , 1
+0 1 0 0 0 1 1 0 0 , 1
+0 1 0 0 0 1 0 1 0 , 1
+0 1 0 0 0 1 0 0 1 , 1
+0 1 0 0 0 0 1 1 0 , 1
+0 1 0 0 0 0 1 0 1 , 1
+0 1 0 0 0 0 0 1 1 , 1
+0 0 1 1 0 1 0 0 0 , 1
+0 0 1 1 0 0 1 0 0 , 1
+0 0 1 1 0 0 0 1 0 , 1
+0 0 1 1 0 0 0 0 1 , 1
+0 0 1 0 0 1 1 0 0 , 1
+0 0 1 0 0 1 0 1 0 , 1
+0 0 1 0 0 1 0 0 1 , 1
+0 0 1 0 0 0 1 1 0 , 1
+0 0 1 0 0 0 1 0 1 , 1
+0 0 1 0 0 0 0 1 1 , 1
+0 0 0 1 0 1 1 0 0 , 1
+0 0 0 1 0 1 0 1 0 , 1
+0 0 0 1 0 1 0 0 1 , 1
+0 0 0 1 0 0 1 1 0 , 1
+0 0 0 1 0 0 1 0 1 , 1
+0 0 0 1 0 0 0 1 1 , 1
+0 0 0 0 0 1 1 1 0 , 1
+0 0 0 0 0 1 1 0 1 , 1
+0 0 0 0 0 1 0 1 1 , 1
+0 0 0 0 0 0 1 1 1 , 1
